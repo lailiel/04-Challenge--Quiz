@@ -3,7 +3,6 @@
     --mid-1: #FF7DAE;
     --mid-2: #865DFF;
     --dark: #2e2961;
-    
 }
 
 
@@ -51,6 +50,7 @@ section {
     padding: 3vh;
     color: var(--dark);
     background-color: var(--mid-1);
+    border-radius: 10px;
 }
 
 footer {
@@ -64,19 +64,25 @@ footer {
     
 }
 
-
 h1, h3 {
     background-color: var(--mid-2);
     padding: 12px;
+    border-radius: 5px;
 }
 
 h2 {
     padding: 20px;
 }
 
-#Q1, #Q2, #Q3, #Q4 {
+li {
     padding: 10px;
     margin: 10px;
     color: var(--light);
     background-color: var(--mid-2);
+    border-radius: 5px;
+}
+
+li:hover, h1:hover, h3:hover {
+    transform: scale(90%) ;
+    opacity: 80%;
 }
