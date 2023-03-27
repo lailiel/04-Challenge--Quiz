@@ -43,7 +43,7 @@ var questionSelector = 0;
 
 
 function startGame() {
-  timerCount = 30;
+  timerCount = 3;
   start.disabled = true;
   startTimer()
   poseQuestion()
@@ -52,7 +52,8 @@ function startGame() {
 function gameOver() {
   question.textContent = "GAME OVER";
   start.disabled = false;
-  introEl.setAttribute("style", "visibility:hidden;");
+  introEl.textContent = "You earned " + score + " points" 
+  introEl.setAttribute("style", "visibility:visible;");
   answers.setAttribute("style", "visibility:hidden;");
 }
 
@@ -98,6 +99,8 @@ function checkanswer(){
     incorrect()
   }
 }
+
+// ADD LOG SCORE STUFF
 
 // -----------------------------------------------------------------------------------------
 
