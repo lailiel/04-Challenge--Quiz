@@ -43,7 +43,7 @@ var questionSelector = 0;
 
 
 function startGame() {
-  timerCount = 3;
+  timerCount = 30;
   start.disabled = true;
   startTimer()
   poseQuestion()
@@ -55,6 +55,7 @@ function gameOver() {
   introEl.textContent = "You earned " + score + " points" 
   introEl.setAttribute("style", "visibility:visible;");
   answers.setAttribute("style", "visibility:hidden;");
+  rightWrong.setAttribute("style", "visibility:hidden;");
 }
 
 function correct(){
@@ -79,23 +80,36 @@ function startTimer() {
 function poseQuestion(){
   introEl.setAttribute("style", "visibility:hidden;");
   answers.setAttribute("style", "visibility:visible;");
+  answer1.value= questionArray[questionSelector].options[0]
+  answer2.value= questionArray[questionSelector].options[1]
+  answer3.value= questionArray[questionSelector].options[2]
+  answer4.value= questionArray[questionSelector].options[3]
+
   question.textContent = questionArray[questionSelector].questionOp
   answer1.textContent = questionArray[questionSelector].options[0]
+
   answer2.textContent = questionArray[questionSelector].options[1]
+  
   answer3.textContent = questionArray[questionSelector].options[2]
+
   answer4.textContent = questionArray[questionSelector].options[3]
-  for (let i = 0; i < questionArray.length; i++)
-    questionSelector++
+
+  questionSelector++
 }
 
+// fix answer button format
+// add whatever to keep timer from going negative
 // figure out the correct call/tag whatever to check clicked text against answer
-function checkanswer(){
-  if (textContent == questionArray[questionSelector].answerCor) {
+function checkanswer(event){
+  console.log(event.target.value)
+  if (event.target.value === questionArray[questionSelector].answerCor) {
     score++
     correct()
     poseQuestion()
+    console.log("score")
+    
   } else {
-    timerCount-3
+    timerCount = timerCount -3
     incorrect()
   }
 }
