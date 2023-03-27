@@ -1,16 +1,25 @@
-// var question = document.querySelector("#quesion")
-// var answers = document.querySelector("#answers")
-var timerElement= document.querySelector(".timer-count")
+var question = document.querySelector(".question")
+var answers = document.querySelector(".answers")
 
+var answer1 = document.querySelector("#answer1")
+var answer1 = document.querySelector("#answer2")
+var answer1 = document.querySelector("#answer3")
+var answer1 = document.querySelector("#answer4")
+
+var timerElement= document.querySelector(".timer-count")
+var introEl = document.querySelector("#intro")
 var start = document.querySelector(".start-button");
 // var countEl = document.querySelector(".count");
 
 
-// var score = 0;
-var timer; 
-var timerCount = 30;
-
 // add var arrays here for questions and answers
+var questionOptions
+
+var score = 0;
+var timer; 
+var timerCount;
+
+
 
 // function init() {
 //   getHighscore();
@@ -18,12 +27,18 @@ var timerCount = 30;
 
 
 function startGame() {
-  timerCount = 5;
+  timerCount = 3;
   start.disabled = true;
-  // poseQuestion()
   startTimer()
+  poseQuestion()
 }
 
+function gameOver() {
+  question.textContent = "GAME OVER";
+  startButton.disabled = false;
+  introEl.setAttribute("style", "visibility:hidden;");
+  answers.setAttribute("style", "visibility:hidden;");
+}
 
 
 function startTimer() {
@@ -32,12 +47,20 @@ function startTimer() {
     timerElement.textContent = timerCount;
     if (timerCount === 0) {
       clearInterval(timer);
-      start.disabled = false;
-      // gameOver();
+      gameOver();
     }
   }, 1000);
 }
 
+function poseQuestion(){
+  introEl.setAttribute("style", "visibility:hidden;");
+  answers.setAttribute("style", "visibility:visible;");
+  question.textContent = questionOptions
+  answer1.textContent = answerOptions[x]
+  answer2.textContent = answerOptions[x]
+  answer3.textContent = answerOptions[x]
+  answer4.textContent = answerOptions[x]
+}
 
 // -----------------------------------------------------------------------------------------
 

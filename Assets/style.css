@@ -12,12 +12,10 @@
     box-sizing: border-box;
     padding: 0;
     margin: 0;
-    
 }
 
-html{
+html {
     height: 100%;
- 
 }
 
 body {
@@ -30,14 +28,18 @@ body {
 }
 
 
-nav{
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 30px;
     background-color: var(--dark);
     color: var(--dark);
-    
+}
+
+#intro {
+    padding: 5px;
+    visibility: visible;
 }
 
 section {
@@ -53,6 +55,11 @@ section {
     border-radius: 10px;
 }
 
+.answers {
+    visibility: hidden;
+    list-style: none;
+}
+
 footer {
     display: flex;
     justify-content: space-between;
@@ -60,8 +67,6 @@ footer {
     padding: 30px;
     background-color: var(--dark);
     color: var(--dark);
-  
-    
 }
 
 button {
@@ -70,7 +75,7 @@ button {
     background-color: var(--mid-2);
     padding: 15px;
     border-radius: 5px;
-    border:0px;
+    border: 0px;
     transition-duration: 0.3s;
 }
 
@@ -83,15 +88,15 @@ button {
     background-color: var(--mid-2);
     padding: 15px;
     border-radius: 5px;
-    border:0px;
+    border: 0px;
 }
 
 .timer-count {
     padding: 5px;
 }
 
-h2 {
-    padding: 20px;
+h1 {
+    padding: 7px;
 }
 
 li {
@@ -103,13 +108,14 @@ li {
     transition-duration: 0.3s;
 }
 
-li:hover, button:hover {
+li:hover,
+button:hover {
     box-shadow: 0px 0px 10px 5px var(--light);
 }
 
 li:active {
-    transform: scale( 90%);
-} 
+    transform: scale(90%);
+}
 
 button:active {
     transform: scale(95%);

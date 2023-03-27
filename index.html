@@ -6,30 +6,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="Assets/style.css" />
-    <link rel="icon" href="Assets/icon.png"/>
+    <link rel="icon" href="Assets/icon.png" />
     <title>Coding Quiz</title>
 </head>
 
 <body>
-    <nav>
+    <header>
         <button class="start-button"> Start </button>
         <div class="timer">
-            Time : 
-            <div class = "timer-count"> 30 </div>
+            Time :
+            <div class="timer-count"> 30 </div>
         </div>
-    </nav>
+    </header>
 
     <section>
-        <h2 id="question"> Question goes here?</h2>
-        <div>
-            <ul id="answers"> </ul>
-            <li id="Q1"> Q1</li>
-            <li id="Q2"> Q2</li>
-            <li id="Q3"> Q3</li>
-            <li id="Q4"> Q4</li>
-        </div>
+        <h1 id="question"> Coding Quiz Challenge</h1>
+        <p id="intro"> You have 30 seconds to answer as many questions correctly as you can. Each wrong answer will subtract 3 seconds from your time.</p>
+        <ul class="answers">
+            <li id="answer1"> </li>
+            <li id="answer2"> </li>
+            <li id="answer3"> </li>
+            <li id="answer4"> </li>
+        </ul>
+        <p id="right-wrong"></p>
     </section>
-        
+
     <footer>
         <button class="reset">Reset</button>
         <button class="high-score">View High Score</button>
