@@ -5,12 +5,11 @@ var answer1 = document.querySelector("#answer1")
 var answer2 = document.querySelector("#answer2")
 var answer3 = document.querySelector("#answer3")
 var answer4 = document.querySelector("#answer4")
+var rightWrong = document.querySelector("#right-wrong")
 
 var timerElement= document.querySelector(".timer-count")
 var introEl = document.querySelector("#intro")
 var start = document.querySelector(".start-button");
-// var countEl = document.querySelector(".count");
-
 
 // add var arrays here for questions and answers
 var questionArray = [
@@ -27,7 +26,7 @@ var questionArray = [
   {
     questionOp: "Question 3-answer 9 is correct",
     options: ["answer 9", "answer 10", "answer 11", "answer 12"],
-    answerCor: "answer 8",
+    answerCor: "answer 9",
   },
 ]
 
@@ -35,7 +34,7 @@ var questionArray = [
 var score = 0;
 var timer; 
 var timerCount;
-
+var questionSelector = 0;
 
 
 // function init() {
@@ -52,11 +51,18 @@ function startGame() {
 
 function gameOver() {
   question.textContent = "GAME OVER";
-  startButton.disabled = false;
+  start.disabled = false;
   introEl.setAttribute("style", "visibility:hidden;");
   answers.setAttribute("style", "visibility:hidden;");
 }
 
+function correct(){
+  rightWrong.textContent= "Correct!"
+}
+
+function incorrect(){
+  rightWrong.textContent= "Wrong! Try again."
+}
 
 function startTimer() {
   timer = setInterval(function() {
@@ -72,15 +78,33 @@ function startTimer() {
 function poseQuestion(){
   introEl.setAttribute("style", "visibility:hidden;");
   answers.setAttribute("style", "visibility:visible;");
-  // for (let i = 0; i < quesionArray.length; i++)
-  question.textContent = questionArray[0].questionOp
-  answer1.textContent = questionArray[0].options[0]
-  answer2.textContent = questionArray[0].options[1]
-  answer3.textContent = questionArray[0].options[2]
-  answer4.textContent = questionArray[0].options[3]
+  question.textContent = questionArray[questionSelector].questionOp
+  answer1.textContent = questionArray[questionSelector].options[0]
+  answer2.textContent = questionArray[questionSelector].options[1]
+  answer3.textContent = questionArray[questionSelector].options[2]
+  answer4.textContent = questionArray[questionSelector].options[3]
+  for (let i = 0; i < questionArray.length; i++)
+    questionSelector++
+}
+
+// figure out the correct call/tag whatever to check clicked text against answer
+function checkanswer(){
+  if (textContent == questionArray[questionSelector].answerCor) {
+    score++
+    correct()
+    poseQuestion()
+  } else {
+    timerCount-3
+    incorrect()
+  }
 }
 
 // -----------------------------------------------------------------------------------------
 
-// Attach event listener to increment button element
+
 start.addEventListener("click", startGame) 
+
+answer1.addEventListener("click", checkanswer)
+answer2.addEventListener("click", checkanswer)
+answer3.addEventListener("click", checkanswer)
+answer4.addEventListener("click", checkanswer)
