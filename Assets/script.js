@@ -18,7 +18,7 @@ var timerCount = 30;
 
 
 function startGame() {
-  timerCount = 30;
+  timerCount = 5;
   start.disabled = true;
   // poseQuestion()
   startTimer()
@@ -32,6 +32,7 @@ function startTimer() {
     timerElement.textContent = timerCount;
     if (timerCount === 0) {
       clearInterval(timer);
+      start.disabled = false;
       // gameOver();
     }
   }, 1000);
