@@ -148,3 +148,31 @@ li:active {
 button:active {
     transform: scale(95%);
 }
+
+
+
+/* --------------------------- */
+
+input {
+    background-color: var(--light);
+    border-radius: 2px;
+    border-width: 0;
+    font-size: 1em;
+    height: 45px;
+    line-height: 20px;
+    margin: 0;
+    margin-top: 10px;
+    max-width: 100%;
+    padding: 8px 8px 8px 8px;
+    transition-delay: 0s, 0s;
+    transition-duration: 0.2s, 0.2s;
+    transition-property: background-color, color;
+    transition-timing-function: ease, ease;
+    vertical-align: middle;
+    width: 30%;
+  visibility: hidden;
+  }
+
+  #submit{
+    visibility: hidden;
+  }

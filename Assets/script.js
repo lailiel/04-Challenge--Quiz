@@ -6,6 +6,8 @@ var answer2 = document.querySelector("#answer2")
 var answer3 = document.querySelector("#answer3")
 var answer4 = document.querySelector("#answer4")
 var rightWrong = document.querySelector("#right-wrong")
+var submit = document.querySelector("#submit")
+var input = document.querySelector("input")
 
 var timerElement= document.querySelector(".timer-count")
 var introEl = document.querySelector("#intro")
@@ -41,7 +43,7 @@ var questionSelector = 0;
 
 // connect this to whatever logged into from entering name and score
 // function getHighscore();{
-
+//   var highScoreList= localStorage.getItem("score")
 // }
 
 
@@ -59,6 +61,8 @@ function gameOver() {
   introEl.setAttribute("style", "visibility:visible;");
   answers.setAttribute("style", "visibility:hidden;");
   rightWrong.setAttribute("style", "visibility:hidden;");
+  submit.setAttribute("style", "visibility:visible;");
+  input.setAttribute("style", "visibility:visible;");
 }
 
 function correct(){
@@ -100,7 +104,7 @@ function poseQuestion(){
 
 }
 
-// fix answer button format in css/html
+
 
 function checkanswer(event){
   event.preventDefault()
@@ -114,8 +118,9 @@ function checkanswer(event){
     console.log("score")
 
   } else {
-    timerCount = timerCount -3
     incorrect()
+    if(timerCount >= 3){
+    timerCount = timerCount -3} else {timerCount = 0}   
   }
 }
 
@@ -137,9 +142,10 @@ answer2.addEventListener("click", checkanswer)
 answer3.addEventListener("click", checkanswer)
 answer4.addEventListener("click", checkanswer)
 
+submit.addEventListener("click", ___())
 
 reset.addEventListener("click", resetScores())
-highScore.addEventListener("click", __)
+highScore.addEventListener("click", getHighScore())
 theme.addEventListener("click", __)
 
 // ----------------------------------------------------------------------------------------
