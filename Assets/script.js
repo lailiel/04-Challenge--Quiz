@@ -52,13 +52,14 @@ function startGame() {
 
 function gameOver() {
   question.textContent = "GAME OVER";
-  start.disabled = false;
+  // start.disabled = false;
   introEl.textContent = "You earned " + score + " points"
   introEl.setAttribute("style", "visibility:visible;");
   answers.setAttribute("style", "visibility:hidden;");
   rightWrong.setAttribute("style", "visibility:hidden;");
   submit.setAttribute("style", "visibility:visible;");
   input.setAttribute("style", "visibility:visible;");
+ 
 }
 
 function correct() {
@@ -124,18 +125,19 @@ function checkanswer(event) {
   }
 }
 
-
+//below works
 function logScore() {
   var highScoreName = document.querySelector("#input").value;
-  localStorage.setItem("Name", highScoreName);
-  localStorage.setItem("Score", score);
+  var localScores = highScoreName + " - " + score
+  localStorage.setItem("localScores", JSON.stringify(localScores));
 }
 
-// // connect this to whatever logged into from entering name and score
-// function showHighscores(); {
-//   var highScoreList = localStorage.getItem("score")
-//   var highScoreNameList = localStorage.getItem("Name")
-// }
+//this needs work
+function showHighScores() {
+  var scoreDisplay = JSON.parse(localStorage.getItem("localScores"));
+
+  }
+
 
 // below works
 function resetScores(){
@@ -157,7 +159,7 @@ submit.addEventListener("click", logScore)
 
 reset.addEventListener("click", resetScores)
 
-// highScore.addEventListener("click", showHighScores)
+highScore.addEventListener("click", showHighScores)
 
 // theme.addEventListener("click", __)
 
