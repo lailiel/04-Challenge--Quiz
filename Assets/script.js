@@ -94,20 +94,23 @@ function poseQuestion(){
 
   answer4.textContent = questionArray[questionSelector].options[3]
 
-  questionSelector++
 }
 
 // fix answer button format
 // add whatever to keep timer from going negative
 // figure out the correct call/tag whatever to check clicked text against answer
 function checkanswer(event){
-  console.log(event.target.value)
-  if (event.target.value === questionArray[questionSelector].answerCor) {
+  event.preventDefault()
+  console.log(event.target.value.trim())
+  console.log(questionArray[questionSelector].answerCor.trim())
+  if (event.target.value.trim() == questionArray[questionSelector].answerCor.trim()) {
     score++
     correct()
+    questionSelector++
     poseQuestion()
     console.log("score")
-    
+
+    // below works fine
   } else {
     timerCount = timerCount -3
     incorrect()
