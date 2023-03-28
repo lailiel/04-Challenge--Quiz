@@ -9,9 +9,12 @@ var rightWrong = document.querySelector("#right-wrong")
 
 var timerElement= document.querySelector(".timer-count")
 var introEl = document.querySelector("#intro")
-var start = document.querySelector(".start-button");
+var start = document.querySelector(".start-button")
+var reset = document.querySelector(".reset");
+var highScore = document.querySelector(".high-score");
+var theme = document.querySelector(".theme")
 
-// add var arrays here for questions and answers
+// add var arrays here for questions and answers 4 is good, more if wanted.
 var questionArray = [
   {
     questionOp: "Question 1-answer 2 is correct",
@@ -36,10 +39,10 @@ var timer;
 var timerCount;
 var questionSelector = 0;
 
+// connect this to whatever logged into from entering name and score
+function getHighscore();{
 
-// function init() {
-//   getHighscore();
-// }
+}
 
 
 function startGame() {
@@ -68,6 +71,7 @@ function incorrect(){
 
 function startTimer() {
   timer = setInterval(function() {
+    if (timerCount >=1)
     timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount === 0) {
@@ -96,9 +100,8 @@ function poseQuestion(){
 
 }
 
-// fix answer button format
-// add whatever to keep timer from going negative
-// figure out the correct call/tag whatever to check clicked text against answer
+// fix answer button format in css/html
+
 function checkanswer(event){
   event.preventDefault()
   console.log(event.target.value.trim())
@@ -117,6 +120,12 @@ function checkanswer(event){
   }
 }
 
+
+// logged info
+function resetScores(){
+  
+}
+
 // ADD LOG SCORE STUFF
 
 // -----------------------------------------------------------------------------------------
@@ -128,3 +137,11 @@ answer1.addEventListener("click", checkanswer)
 answer2.addEventListener("click", checkanswer)
 answer3.addEventListener("click", checkanswer)
 answer4.addEventListener("click", checkanswer)
+
+
+reset.addEventListener("click", resetScores())
+highScore.addEventListener("click", __)
+theme.addEventListener("click", __)
+
+// ----------------------------------------------------------------------------------------
+// add score display?
