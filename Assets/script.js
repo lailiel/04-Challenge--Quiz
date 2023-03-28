@@ -7,9 +7,9 @@ var answer3 = document.querySelector("#answer3")
 var answer4 = document.querySelector("#answer4")
 var rightWrong = document.querySelector("#right-wrong")
 var submit = document.querySelector("#submit")
-var input = document.querySelector("input")
+var input = document.querySelector("#input")
 
-var timerElement= document.querySelector(".timer-count")
+var timerElement = document.querySelector(".timer-count")
 var introEl = document.querySelector("#intro")
 var start = document.querySelector(".start-button")
 var reset = document.querySelector(".reset");
@@ -37,14 +37,10 @@ var questionArray = [
 
 
 var score = 0;
-var timer; 
+var timer;
 var timerCount;
 var questionSelector = 0;
 
-// connect this to whatever logged into from entering name and score
-// function getHighscore();{
-//   var highScoreList= localStorage.getItem("score")
-// }
 
 
 function startGame() {
@@ -57,7 +53,7 @@ function startGame() {
 function gameOver() {
   question.textContent = "GAME OVER";
   start.disabled = false;
-  introEl.textContent = "You earned " + score + " points" 
+  introEl.textContent = "You earned " + score + " points"
   introEl.setAttribute("style", "visibility:visible;");
   answers.setAttribute("style", "visibility:hidden;");
   rightWrong.setAttribute("style", "visibility:hidden;");
@@ -65,18 +61,18 @@ function gameOver() {
   input.setAttribute("style", "visibility:visible;");
 }
 
-function correct(){
-  rightWrong.textContent= "Correct!"
+function correct() {
+  rightWrong.textContent = "Correct!"
 }
 
-function incorrect(){
-  rightWrong.textContent= "Wrong! Try again."
+function incorrect() {
+  rightWrong.textContent = "Wrong! Try again."
 }
 
 function startTimer() {
-  timer = setInterval(function() {
-    if (timerCount >=1)
-    timerCount--;
+  timer = setInterval(function () {
+    if (timerCount >= 1)
+      timerCount--;
     timerElement.textContent = timerCount;
     if (timerCount === 0) {
       clearInterval(timer);
@@ -85,19 +81,19 @@ function startTimer() {
   }, 1000);
 }
 
-function poseQuestion(){
+function poseQuestion() {
   introEl.setAttribute("style", "visibility:hidden;");
   answers.setAttribute("style", "visibility:visible;");
-  answer1.value= questionArray[questionSelector].options[0]
-  answer2.value= questionArray[questionSelector].options[1]
-  answer3.value= questionArray[questionSelector].options[2]
-  answer4.value= questionArray[questionSelector].options[3]
+  answer1.value = questionArray[questionSelector].options[0]
+  answer2.value = questionArray[questionSelector].options[1]
+  answer3.value = questionArray[questionSelector].options[2]
+  answer4.value = questionArray[questionSelector].options[3]
 
   question.textContent = questionArray[questionSelector].questionOp
   answer1.textContent = questionArray[questionSelector].options[0]
 
   answer2.textContent = questionArray[questionSelector].options[1]
-  
+
   answer3.textContent = questionArray[questionSelector].options[2]
 
   answer4.textContent = questionArray[questionSelector].options[3]
@@ -105,11 +101,16 @@ function poseQuestion(){
 }
 
 
+function timerPenalty() {
+  if (timerCount >= 3) {
+    timerCount = timerCount - 3
+  }
+  else { timerCount = 0 }
+}
 
-function checkanswer(event){
+function checkanswer(event) {
   event.preventDefault()
-  console.log(event.target.value.trim())
-  console.log(questionArray[questionSelector].answerCor.trim())
+  rightWrong.setAttribute("style", "visibility:visible;");
   if (event.target.value.trim() == questionArray[questionSelector].answerCor.trim()) {
     score++
     correct()
@@ -119,34 +120,46 @@ function checkanswer(event){
 
   } else {
     incorrect()
-    if(timerCount >= 3){
-    timerCount = timerCount -3} else {timerCount = 0}   
+    timerPenalty()
   }
 }
 
 
-// logged info
-// function resetScores(){
-  
+function logScore() {
+  var highScoreName = document.querySelector("#input").value;
+  localStorage.setItem("Name", highScoreName);
+  localStorage.setItem("Score", score);
+}
+
+// // connect this to whatever logged into from entering name and score
+// function showHighscores(); {
+//   var highScoreList = localStorage.getItem("score")
+//   var highScoreNameList = localStorage.getItem("Name")
 // }
 
-// ADD LOG SCORE STUFF
+// below works
+function resetScores(){
+  localStorage.clear();
+}
+
 
 // -----------------------------------------------------------------------------------------
 
 
-start.addEventListener("click", startGame) 
+start.addEventListener("click", startGame)
 
 answer1.addEventListener("click", checkanswer)
 answer2.addEventListener("click", checkanswer)
 answer3.addEventListener("click", checkanswer)
 answer4.addEventListener("click", checkanswer)
 
-submit.addEventListener("click", ___())
+submit.addEventListener("click", logScore)
 
-reset.addEventListener("click", resetScores())
-highScore.addEventListener("click", getHighScore())
-theme.addEventListener("click", __)
+reset.addEventListener("click", resetScores)
+
+// highScore.addEventListener("click", showHighScores)
+
+// theme.addEventListener("click", __)
 
 // ----------------------------------------------------------------------------------------
 // add score display?
