@@ -40,9 +40,9 @@ var timerCount;
 var questionSelector = 0;
 
 // connect this to whatever logged into from entering name and score
-function getHighscore();{
+// function getHighscore();{
 
-}
+// }
 
 
 function startGame() {
@@ -113,7 +113,6 @@ function checkanswer(event){
     poseQuestion()
     console.log("score")
 
-    // below works fine
   } else {
     timerCount = timerCount -3
     incorrect()
@@ -122,9 +121,9 @@ function checkanswer(event){
 
 
 // logged info
-function resetScores(){
+// function resetScores(){
   
-}
+// }
 
 // ADD LOG SCORE STUFF
 
