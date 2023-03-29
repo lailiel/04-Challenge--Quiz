@@ -125,7 +125,7 @@ function checkanswer(event) {
   }
 }
 
-//below works
+//below needs work
 //add validation
 // function logScore() {
 //   var highScoreName = document.querySelector("#input").value;
@@ -147,12 +147,11 @@ function checkanswer(event) {
 
 
 // below works
-// function resetScores(){
-//   localStorage.clear();
-// }
+function resetScores(){
+  localStorage.clear();
+}
 
 
-// whole page formatting/display needs work so stuff isn't so crowded
 
 // -----------------------------------------------------------------------------------------
 
@@ -164,11 +163,11 @@ answer2.addEventListener("click", checkanswer)
 answer3.addEventListener("click", checkanswer)
 answer4.addEventListener("click", checkanswer)
 
-// submit.addEventListener("click", logScore)
+submit.addEventListener("click", logScore)
 
-// reset.addEventListener("click", resetScores)
+reset.addEventListener("click", resetScores)
 
-// highScore.addEventListener("click", showHighScores)
+highScore.addEventListener("click", showHighScores)
 
 // theme.addEventListener("click", __)
 

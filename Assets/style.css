@@ -78,15 +78,17 @@ section {
 
 .starter-layout {
     display: flex;
+    justify-content: center;
 }
 
 .quiz-layout {
     display: none;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 #finalscore{
     display: none;
+    
 }
 
 .answers {
@@ -132,7 +134,7 @@ button {
 }
 
 h1 {
-    padding: 7px;
+    padding: 10px;
 }
 
 #answer1,
@@ -140,7 +142,7 @@ h1 {
 #answer3,
 #answer4 {
     padding: 10px;
-    margin: 3px;
+    margin: 10px;
     max-height: 25%;
     font-size: 15px;
     color: var(--light);
