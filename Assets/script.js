@@ -4,10 +4,10 @@ var quizEL = document.querySelector(".quiz-layout")
 var question = document.querySelector("#question")
 var answers = document.querySelector(".answers")
 
-var answer1 = document.querySelectorAll("#answer1")
-var answer2 = document.querySelectorAll("#answer2")
-var answer3 = document.querySelectorAll("#answer3")
-var answer4 = document.querySelectorAll("#answer4")
+var answer1 = document.querySelector("#answer1")
+var answer2 = document.querySelector("#answer2")
+var answer3 = document.querySelector("#answer3")
+var answer4 = document.querySelector("#answer4")
 var rightWrong = document.querySelector("#right-wrong")
 var submit = document.querySelector("#submit")
 var input = document.querySelector("#input")
@@ -52,7 +52,6 @@ function startGame() {
   start.disabled = true;
   introEl.setAttribute("style", "display:none;");
   quizEL.setAttribute("style", "display:flex;");
-  answers.setAttribute("style", "display:flex;")
   startTimer()
   poseQuestion()
 }
@@ -90,7 +89,6 @@ function startTimer() {
 }
 
 function poseQuestion() {
-
   answer1.value = questionArray[questionSelector].options[0]
   answer2.value = questionArray[questionSelector].options[1]
   answer3.value = questionArray[questionSelector].options[2]
@@ -102,7 +100,6 @@ function poseQuestion() {
   answer2.textContent = questionArray[questionSelector].options[1]
   answer3.textContent = questionArray[questionSelector].options[2]
   answer4.textContent = questionArray[questionSelector].options[3]
-
 }
 
 
@@ -121,7 +118,6 @@ function checkanswer(event) {
     correct()
     questionSelector++
     poseQuestion()
-    console.log("score")
 
   } else {
     incorrect()

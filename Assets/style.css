@@ -82,6 +82,7 @@ section {
 
 .quiz-layout {
     display: none;
+    justify-content: space-around;
 }
 
 #finalscore{
@@ -89,7 +90,7 @@ section {
 }
 
 .answers {
-    display: none;
+    display: flex;
     flex-direction: column;
 }
 
@@ -181,9 +182,8 @@ input {
     transition-timing-function: ease, ease;
     vertical-align: middle;
     width: 30%;
-    visibility: hidden;
 }
 
-#submit {
-    visibility: hidden;
+#input, #submit {
+    display: none;
 }
