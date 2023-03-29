@@ -93,7 +93,13 @@ section {
 
 #score-list{
     display: none;
-    list-style: none;    
+    list-style: none; 
+    flex-direction: column;   
+    
+}
+
+li{
+  padding: 5px;
 }
 
 .answers {
@@ -160,9 +166,7 @@ button:hover {
     box-shadow: 0px 0px 10px 5px var(--light);
 }
 
-li:active {
-    transform: scale(90%);
-}
+
 
 button:active {
     transform: scale(95%);

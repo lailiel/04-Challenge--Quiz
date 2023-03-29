@@ -148,16 +148,20 @@ function showHighScores() {
   introEl.setAttribute("style", "display:none;");
   quizEL.setAttribute("style", "display:flex;");
   rightWrong.setAttribute("style", "display:none;");
+  answers.setAttribute("style", "display:none;");
   submit.setAttribute("style", "display:none;");
   input.setAttribute("style", "display:none;");
   finalScore.setAttribute("style", "display:none;")
+
   question.textContent = "High Scores"
   var scoreDisplay = JSON.parse(localStorage.getItem("scoreList"));
+  highScore.disabled = true;
+  start.disabled = true;
   
-  for ( i= 0; scoreDisplay.length; i++){
+  for ( i= 0; i< scoreDisplay.length; i++){
     var listItem = document.createElement("li")
     listItem.textContent = scoreDisplay[i]
-    displayList.appendChild()
+    displayList.appendChild(listItem)
   }
 
 }
@@ -167,6 +171,7 @@ function showHighScores() {
 
 function resetScores() {
   localStorage.clear("scoreList");
+  location.reload()
 }
 
 
