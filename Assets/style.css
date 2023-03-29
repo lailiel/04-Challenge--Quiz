@@ -91,6 +91,11 @@ section {
     
 }
 
+#score-list{
+    display: none;
+    list-style: none;    
+}
+
 .answers {
     display: flex;
     flex-direction: column;

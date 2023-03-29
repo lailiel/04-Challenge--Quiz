@@ -12,6 +12,7 @@ var rightWrong = document.querySelector("#right-wrong")
 var submit = document.querySelector("#submit")
 var input = document.querySelector("#input")
 var finalScore = document.querySelector("#finalscore")
+var displayList = document.querySelector("#score-list")
 
 
 var timerElement = document.querySelector(".timer-count")
@@ -65,7 +66,7 @@ function gameOver() {
   rightWrong.setAttribute("style", "display:none;");
   submit.setAttribute("style", "display:flex;");
   input.setAttribute("style", "display:flex;");
- 
+
 }
 
 function correct() {
@@ -125,30 +126,35 @@ function checkanswer(event) {
   }
 }
 
-//below needs work
-//add validation
-// function logScore() {
-//   var highScoreName = document.querySelector("#input").value;
-//   var localScores = highScoreName + " - " + score
-//   // var - to retrieve local Storage
 
-//   // var - add new score
-//   // function
-//   // add retrieved scores to user score
-//   // then push to local storage
-//   localStorage.setItem("localScores", JSON.stringify(localScores));
-// }
+function logScore() {
+  var userName = document.querySelector("#input").value.trim();
+  if (userName == null) {
+    return
+  }
+  var userScore = userName + " - " + score;
+
+  var scoreList = []
+  scoreList =  JSON.parse(localStorage.getItem("scoreList") || "[]");
+  scoreList.push(userScore)
+  localStorage.setItem("scoreList", JSON.stringify(scoreList))
+}
+
+
 
 //this needs work
-// function showHighScores() {
-//   var scoreDisplay = JSON.parse(localStorage.getItem("localScores"));
+function showHighScores() {
+  var scoreDisplay = JSON.parse(localStorage.getItem("scoreList"));
+  question.textContent = "High Scores"
+  displayList.append("li")
 
-//   }
+}
 
 
-// below works
-function resetScores(){
-  localStorage.clear();
+
+
+function resetScores() {
+  localStorage.clear("scoreList");
 }
 
 
