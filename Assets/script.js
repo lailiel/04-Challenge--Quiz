@@ -24,19 +24,34 @@ var theme = document.querySelector(".theme")
 // add var arrays here for questions and answers 4 is good, more if wanted.
 var questionArray = [
   {
-    questionOp: "Question 1-answer 2 is correct",
-    options: ["answer 1", "answer 2", "answer 3", "answer 4"],
-    answerCor: "answer 2",
+    questionOp: "Inside which HTML element do we put Javascript?",
+    options: ["<js>", "<javascript>", "<scripting>", "<script>"],
+    answerCor: "<script>",
   },
   {
-    questionOp: "Question 2-answer 8 is correct",
-    options: ["answer 5", "answer 6", "answer 7", "answer 8"],
-    answerCor: "answer 8",
+    questionOp: "How do you write 'Hello World' in an alert box?",
+    options: ["msg('Hello World')", "alertBox('Hello World')", "msgBox('Hello World')", "alert('Hello World')"],
+    answerCor: "alert('Hello World')",
   },
   {
-    questionOp: "Question 3-answer 9 is correct",
-    options: ["answer 9", "answer 10", "answer 11", "answer 12"],
-    answerCor: "answer 9",
+    questionOp: "How do you write an IF statement in JavaScript?",
+    options: ["if i == 5 then", "if (i == 5)", "if i = 5", "if i = 5 then"],
+    answerCor: "if (i == 5)",
+  },
+  {
+    questionOp: "How to write an IF statement for executing some code if 'i' is NOT equal to 5?",
+    options: ["if i =! 5 then", "if (i <> 5)", "if i <> 5", "if (i != 5)"],
+    answerCor: "if (i != 5)",
+  },
+  {
+    questionOp: "How does a FOR loop start?",
+    options: ["for (i <= 5; i++)", "for (i = 0; i <= 5; i++)", "for (i = 0; i <= 5)", "for i = 1 to 5"],
+    answerCor: "for (i = 0; i <= 5; i++)",
+  },
+  {
+    questionOp: "How do you round the number 7.25, to the nearest integer?",
+    options: ["round(7.25)", "Math.round(7.25)", "rnd(7.25)", "Math.rnd(7.25)"],
+    answerCor: "Math.round(7.25)",
   },
 ]
 
@@ -45,6 +60,7 @@ var score = 0;
 var timer;
 var timerCount;
 var questionSelector = 0;
+var themeCycle = 0;
 
 
 
@@ -134,7 +150,7 @@ function logScore() {
   var userScore = userName + " - " + score;
 
   var scoreList = []
-  scoreList =  JSON.parse(localStorage.getItem("scoreList") || "[]");
+  scoreList = JSON.parse(localStorage.getItem("scoreList") || "[]");
   scoreList.push(userScore)
   localStorage.setItem("scoreList", JSON.stringify(scoreList))
   location.reload();
@@ -157,8 +173,8 @@ function showHighScores() {
   var scoreDisplay = JSON.parse(localStorage.getItem("scoreList"));
   highScore.disabled = true;
   start.disabled = true;
-  
-  for ( i= 0; i< scoreDisplay.length; i++){
+
+  for (i = 0; i < scoreDisplay.length; i++) {
     var listItem = document.createElement("li")
     listItem.textContent = scoreDisplay[i]
     displayList.appendChild(listItem)
@@ -176,6 +192,20 @@ function resetScores() {
 
 
 
+function changeTheme() {
+  var lightColor = ["#DDF7E3", "#EEEEEE", "#F5D5AE", "#ffa3f0"]
+  var mid2Color = ["#C7E8CA", "#77D970", "#EF9A53", "#865DFF"]
+  var darkColor = ["#5D9C59", "#172774", "#852999", "#2e2961"]
+
+  document.documentElement.style.setProperty('--light', lightColor[themeCycle]);
+  document.documentElement.style.setProperty('--mid-2', mid2Color[themeCycle]);
+  document.documentElement.style.setProperty('--dark', darkColor[themeCycle]);
+  if (themeCycle <3){
+  themeCycle++} else {themeCycle=0}
+
+
+}
+
 // -----------------------------------------------------------------------------------------
 
 
@@ -192,7 +222,7 @@ reset.addEventListener("click", resetScores)
 
 highScore.addEventListener("click", showHighScores)
 
-// theme.addEventListener("click", __)
+theme.addEventListener("click", changeTheme)
 
 // ----------------------------------------------------------------------------------------
 // add score display?
