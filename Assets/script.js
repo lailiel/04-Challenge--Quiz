@@ -59,7 +59,6 @@ function startGame() {
 
 function gameOver() {
   question.textContent = "GAME OVER";
-  start.disabled = false;
   finalScore.textContent = "You earned " + score + " points"
   finalScore.setAttribute("style", "display:flex;")
   answers.setAttribute("style", "display:none;");
@@ -138,15 +137,28 @@ function logScore() {
   scoreList =  JSON.parse(localStorage.getItem("scoreList") || "[]");
   scoreList.push(userScore)
   localStorage.setItem("scoreList", JSON.stringify(scoreList))
+  location.reload();
 }
 
 
 
 //this needs work
 function showHighScores() {
-  var scoreDisplay = JSON.parse(localStorage.getItem("scoreList"));
+  displayList.setAttribute("style", "display:flex;")
+  introEl.setAttribute("style", "display:none;");
+  quizEL.setAttribute("style", "display:flex;");
+  rightWrong.setAttribute("style", "display:none;");
+  submit.setAttribute("style", "display:none;");
+  input.setAttribute("style", "display:none;");
+  finalScore.setAttribute("style", "display:none;")
   question.textContent = "High Scores"
-  displayList.append("li")
+  var scoreDisplay = JSON.parse(localStorage.getItem("scoreList"));
+  
+  for ( i= 0; scoreDisplay.length; i++){
+    var listItem = document.createElement("li")
+    listItem.textContent = scoreDisplay[i]
+    displayList.appendChild()
+  }
 
 }
 
