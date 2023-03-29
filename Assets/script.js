@@ -1,16 +1,20 @@
+var introEl = document.querySelector(".starter-layout")
+var quizEL = document.querySelector(".quiz-layout")
+
 var question = document.querySelector("#question")
 var answers = document.querySelector(".answers")
 
-var answer1 = document.querySelector("#answer1")
-var answer2 = document.querySelector("#answer2")
-var answer3 = document.querySelector("#answer3")
-var answer4 = document.querySelector("#answer4")
+var answer1 = document.querySelectorAll("#answer1")
+var answer2 = document.querySelectorAll("#answer2")
+var answer3 = document.querySelectorAll("#answer3")
+var answer4 = document.querySelectorAll("#answer4")
 var rightWrong = document.querySelector("#right-wrong")
 var submit = document.querySelector("#submit")
 var input = document.querySelector("#input")
+var finalScore = document.querySelector("#finalscore")
+
 
 var timerElement = document.querySelector(".timer-count")
-var introEl = document.querySelector("#intro")
 var start = document.querySelector(".start-button")
 var reset = document.querySelector(".reset");
 var highScore = document.querySelector(".high-score");
@@ -46,19 +50,22 @@ var questionSelector = 0;
 function startGame() {
   timerCount = 30;
   start.disabled = true;
+  introEl.setAttribute("style", "display:none;");
+  quizEL.setAttribute("style", "display:flex;");
+  answers.setAttribute("style", "display:flex;")
   startTimer()
   poseQuestion()
 }
 
 function gameOver() {
   question.textContent = "GAME OVER";
-  // start.disabled = false;
-  introEl.textContent = "You earned " + score + " points"
-  introEl.setAttribute("style", "visibility:visible;");
-  answers.setAttribute("style", "visibility:hidden;");
-  rightWrong.setAttribute("style", "visibility:hidden;");
-  submit.setAttribute("style", "visibility:visible;");
-  input.setAttribute("style", "visibility:visible;");
+  start.disabled = false;
+  finalScore.textContent = "You earned " + score + " points"
+  finalScore.setAttribute("style", "display:flex;")
+  answers.setAttribute("style", "display:none;");
+  rightWrong.setAttribute("style", "display:none;");
+  submit.setAttribute("style", "display:flex;");
+  input.setAttribute("style", "display:flex;");
  
 }
 
@@ -83,20 +90,17 @@ function startTimer() {
 }
 
 function poseQuestion() {
-  introEl.setAttribute("style", "visibility:hidden;");
-  answers.setAttribute("style", "visibility:visible;");
+
   answer1.value = questionArray[questionSelector].options[0]
   answer2.value = questionArray[questionSelector].options[1]
   answer3.value = questionArray[questionSelector].options[2]
   answer4.value = questionArray[questionSelector].options[3]
 
   question.textContent = questionArray[questionSelector].questionOp
+
   answer1.textContent = questionArray[questionSelector].options[0]
-
   answer2.textContent = questionArray[questionSelector].options[1]
-
   answer3.textContent = questionArray[questionSelector].options[2]
-
   answer4.textContent = questionArray[questionSelector].options[3]
 
 }
@@ -111,7 +115,7 @@ function timerPenalty() {
 
 function checkanswer(event) {
   event.preventDefault()
-  rightWrong.setAttribute("style", "visibility:visible;");
+  rightWrong.setAttribute("style", "display:flex;");
   if (event.target.value.trim() == questionArray[questionSelector].answerCor.trim()) {
     score++
     correct()
@@ -126,24 +130,33 @@ function checkanswer(event) {
 }
 
 //below works
-function logScore() {
-  var highScoreName = document.querySelector("#input").value;
-  var localScores = highScoreName + " - " + score
-  localStorage.setItem("localScores", JSON.stringify(localScores));
-}
+//add validation
+// function logScore() {
+//   var highScoreName = document.querySelector("#input").value;
+//   var localScores = highScoreName + " - " + score
+//   // var - to retrieve local Storage
+
+//   // var - add new score
+//   // function
+//   // add retrieved scores to user score
+//   // then push to local storage
+//   localStorage.setItem("localScores", JSON.stringify(localScores));
+// }
 
 //this needs work
-function showHighScores() {
-  var scoreDisplay = JSON.parse(localStorage.getItem("localScores"));
+// function showHighScores() {
+//   var scoreDisplay = JSON.parse(localStorage.getItem("localScores"));
 
-  }
+//   }
 
 
 // below works
-function resetScores(){
-  localStorage.clear();
-}
+// function resetScores(){
+//   localStorage.clear();
+// }
 
+
+// whole page formatting/display needs work so stuff isn't so crowded
 
 // -----------------------------------------------------------------------------------------
 
@@ -155,11 +168,11 @@ answer2.addEventListener("click", checkanswer)
 answer3.addEventListener("click", checkanswer)
 answer4.addEventListener("click", checkanswer)
 
-submit.addEventListener("click", logScore)
+// submit.addEventListener("click", logScore)
 
-reset.addEventListener("click", resetScores)
+// reset.addEventListener("click", resetScores)
 
-highScore.addEventListener("click", showHighScores)
+// highScore.addEventListener("click", showHighScores)
 
 // theme.addEventListener("click", __)
 

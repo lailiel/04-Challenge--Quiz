@@ -59,10 +59,7 @@ header {
     color: var(--dark);
 }
 
-#intro {
-    padding: 5px;
-    visibility: visible;
-}
+
 
 section {
     display: flex;
@@ -72,17 +69,28 @@ section {
     justify-content: center;
     max-height: 60%;
     min-height: 60%;
-    margin: 10vh;
+    margin: 6vh;
     padding: 3vh;
     color: var(--dark);
     background-color: var(--mid-1);
     border-radius: 10px;
 }
 
-.answers {
+.starter-layout {
     display: flex;
+}
+
+.quiz-layout {
+    display: none;
+}
+
+#finalscore{
+    display: none;
+}
+
+.answers {
+    display: none;
     flex-direction: column;
-    visibility: hidden;
 }
 
 footer {
