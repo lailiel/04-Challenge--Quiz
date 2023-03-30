@@ -135,7 +135,7 @@ h1 {
 #answer3,
 #answer4 {
     padding: 10px;
-    margin: 10px;
+    margin: 5px;
     max-height: 25%;
     font-size: 15px;
     color: var(--light);
@@ -168,6 +168,7 @@ input {
     margin: 0;
     margin-top: 10px;
     max-width: 100%;
+    min-width: 150px;
     padding: 8px 8px 8px 8px;
     transition-delay: 0s, 0s;
     transition-duration: 0.2s, 0.2s;

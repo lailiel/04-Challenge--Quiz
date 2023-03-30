@@ -69,6 +69,8 @@ function startGame() {
   start.disabled = true;
   introEl.setAttribute("style", "display:none;");
   quizEL.setAttribute("style", "display:flex;");
+  answers.setAttribute("style", "display:flex;");
+  displayList.setAttribute("style", "display:none;")
   startTimer()
   poseQuestion()
 }
@@ -152,13 +154,15 @@ function logScore() {
   var scoreList = []
   scoreList = JSON.parse(localStorage.getItem("scoreList") || "[]");
   scoreList.push(userScore)
+  // sort scores here
+  // scoreList.sort((a,b)=>a-b)
+
   localStorage.setItem("scoreList", JSON.stringify(scoreList))
   location.reload();
 }
 
 
 
-//this needs work
 function showHighScores() {
   displayList.setAttribute("style", "display:flex;")
   introEl.setAttribute("style", "display:none;");
@@ -172,7 +176,7 @@ function showHighScores() {
   question.textContent = "High Scores"
   var scoreDisplay = JSON.parse(localStorage.getItem("scoreList"));
   highScore.disabled = true;
-  start.disabled = true;
+
 
   for (i = 0; i < scoreDisplay.length; i++) {
     var listItem = document.createElement("li")
