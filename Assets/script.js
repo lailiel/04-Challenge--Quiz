@@ -135,12 +135,17 @@ function checkanswer(event) {
     score++
     correct()
     questionSelector++
-    poseQuestion()
+    if (questionSelector<=5){
+      poseQuestion()
+    } else if (questionSelector >5) {
+      gameOver()
+    }
 
   } else {
     incorrect()
     timerPenalty()
   }
+
 }
 
 
@@ -149,15 +154,21 @@ function logScore() {
   if (userName == null) {
     return
   }
-  var userScore = userName + " - " + score;
+  var userScore = {userName , score};
 
   var scoreList = []
-  scoreList = JSON.parse(localStorage.getItem("scoreList") || "[]");
+  scoreList = JSON.parse(localStorage.getItem("scoreListKey") || "[]");
   scoreList.push(userScore)
-  // sort scores here
-  // scoreList.sort((a,b)=>a-b)
+  
+for (i = 0; i < scoreDisplay.length; i++){
+  scoreList.score.sort((a,b)=>a-b)
+    if(a > b) return 1;
+    if(a < b) return -1;
+    return 0
+   
+}
 
-  localStorage.setItem("scoreList", JSON.stringify(scoreList))
+  localStorage.setItem("scoreListKey", JSON.stringify(scoreList))
   location.reload();
 }
 
@@ -174,13 +185,13 @@ function showHighScores() {
   finalScore.setAttribute("style", "display:none;")
 
   question.textContent = "High Scores"
-  var scoreDisplay = JSON.parse(localStorage.getItem("scoreList"));
+  var scoreDisplay = JSON.parse(localStorage.getItem("scoreListKey"));
   highScore.disabled = true;
 
 
   for (i = 0; i < scoreDisplay.length; i++) {
     var listItem = document.createElement("li")
-    listItem.textContent = scoreDisplay[i]
+    listItem.textContent = scoreDisplay[i].userName + " - " + scoreDisplay[i].score
     displayList.appendChild(listItem)
   }
 
