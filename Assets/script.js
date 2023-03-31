@@ -13,6 +13,7 @@ var submit = document.querySelector("#submit")
 var input = document.querySelector("#input")
 var finalScore = document.querySelector("#finalscore")
 var displayList = document.querySelector("#score-list")
+var scoreList = []
 
 
 var timerElement = document.querySelector(".timer-count")
@@ -21,7 +22,8 @@ var reset = document.querySelector(".reset");
 var highScore = document.querySelector(".high-score");
 var theme = document.querySelector(".theme")
 
-// add var arrays here for questions and answers 4 is good, more if wanted.
+// ----------------------------------------------------------------------------------------
+
 var questionArray = [
   {
     questionOp: "Inside which HTML element do we put Javascript?",
@@ -55,6 +57,7 @@ var questionArray = [
   },
 ]
 
+// ----------------------------------------------------------------------------------------
 
 var score = 0;
 var timer;
@@ -63,10 +66,12 @@ var questionSelector = 0;
 var themeCycle = 0;
 
 
+// ----------------------------------------------------------------------------------------
 
 function startGame() {
   timerCount = 30;
   start.disabled = true;
+  highScore.disabled = false;
   introEl.setAttribute("style", "display:none;");
   quizEL.setAttribute("style", "display:flex;");
   answers.setAttribute("style", "display:flex;");
@@ -135,9 +140,9 @@ function checkanswer(event) {
     score++
     correct()
     questionSelector++
-    if (questionSelector<=5){
+    if (questionSelector <= 5) {
       poseQuestion()
-    } else if (questionSelector >5) {
+    } else if (questionSelector > 5) {
       gameOver()
     }
 
@@ -148,29 +153,23 @@ function checkanswer(event) {
 
 }
 
+// ----------------------------------------------------------------------------------------
 
 function logScore() {
   var userName = document.querySelector("#input").value.trim();
   if (userName == null) {
     return
   }
-  var userScore = {userName , score};
+  var userScore = { userName, score };
 
-  var scoreList = []
+ 
   scoreList = JSON.parse(localStorage.getItem("scoreListKey") || "[]");
   scoreList.push(userScore)
-  
-for (i = 0; i < scoreDisplay.length; i++){
-  scoreList.score.sort((a,b)=>a-b)
-    if(a > b) return 1;
-    if(a < b) return -1;
-    return 0
-   
-}
 
   localStorage.setItem("scoreListKey", JSON.stringify(scoreList))
   location.reload();
 }
+
 
 
 
@@ -186,8 +185,17 @@ function showHighScores() {
 
   question.textContent = "High Scores"
   var scoreDisplay = JSON.parse(localStorage.getItem("scoreListKey"));
+  start.disabled= false;
   highScore.disabled = true;
 
+  clearInterval(timer)
+  timerElement.textContent = "30"
+ 
+   
+
+  scoreDisplay.sort(function(a, b){return b.score-a.score})
+
+  displayList.textContent= ""
 
   for (i = 0; i < scoreDisplay.length; i++) {
     var listItem = document.createElement("li")
@@ -197,7 +205,7 @@ function showHighScores() {
 
 }
 
-
+// ----------------------------------------------------------------------------------------
 
 
 function resetScores() {
@@ -215,8 +223,9 @@ function changeTheme() {
   document.documentElement.style.setProperty('--light', lightColor[themeCycle]);
   document.documentElement.style.setProperty('--mid-2', mid2Color[themeCycle]);
   document.documentElement.style.setProperty('--dark', darkColor[themeCycle]);
-  if (themeCycle <3){
-  themeCycle++} else {themeCycle=0}
+  if (themeCycle < 3) {
+    themeCycle++
+  } else { themeCycle = 0 }
 
 
 }
@@ -240,4 +249,3 @@ highScore.addEventListener("click", showHighScores)
 theme.addEventListener("click", changeTheme)
 
 // ----------------------------------------------------------------------------------------
-// add score display?
