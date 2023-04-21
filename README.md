@@ -8,7 +8,7 @@ clicking the High Scores is selected user is presented with a list of recent pla
 
 Change theme will cycle through a series of 4 color themes for the page.
 
-https://lailiel.github.io/04-Challenge--Quiz/
+https://lailiel.github.io/04-Coding-Quiz/
 
 ![alt text](/Assets/screenshot1.png)
 ![alt text](/Assets/screenshot2.png)
